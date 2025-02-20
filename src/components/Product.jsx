@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../features/cartSlice";
 import { useState } from 'react';
+import './App.css'
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();
-    const [count, setCount] = useState(1);
+    const [count, setCount] = useState(0);
 
     const handleAddToCart = () => {
         dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName})); 
@@ -18,6 +19,7 @@ const Product = ({ product }) => {
             <h3>{product.productName}</h3>
             <p>{product.price + '.00 ש"ח'}</p>
             <input 
+                className="cnt-products"
                 type="number" 
                 value={count} 
                 min="1"
