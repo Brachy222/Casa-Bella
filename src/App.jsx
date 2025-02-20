@@ -31,7 +31,7 @@ function App() {
   return (
     <>
       <h2>המוצרים שלנו</h2>
-      <button onClick={()=><Cart/>}>לסל הקניות</button>
+      {/* <button onClick={()=><Cart/>}>לסל הקניות</button> */}
       <Cart/>
       {products&&<ProductList products={products}/>}
     </>  

@@ -7,12 +7,15 @@ const Cart = () => {
 
     return (
         <div className="cart-div">
-            <h2>עגלת קניות</h2>
+            <h3>עגלת קניות</h3>
+            <ul>
             {cart.map(item => (
-                <div key={item._id}>
-                    <p>{item.productName} - כמות: {item.qty}</p>
-                </div>
+                <li key={item._id}>
+                    <p>{item.productName} </p>
+                    <p> כמות: {item.qty}</p>
+                </li>
             ))}
+            </ul>
         </div>
     );
 };

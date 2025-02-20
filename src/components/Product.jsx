@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Product = ({ product }) => {
     const dispatch = useDispatch();
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(1);
 
     const handleAddToCart = () => {
         dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName})); 
