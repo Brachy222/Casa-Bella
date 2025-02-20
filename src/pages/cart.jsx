@@ -6,7 +6,7 @@ const Cart = () => {
     console.log("תוכן העגלה:", cart); // זה יראה את הנתונים המעודכנים
 
     return (
-        <div>
+        <div className="cart-div">
             <h2>עגלת קניות</h2>
             {cart.map(item => (
                 <div key={item._id}>
