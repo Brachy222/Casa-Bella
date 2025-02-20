@@ -3,6 +3,7 @@ import axios from 'axios';
 import './App.css'
 import ProductList from './pages/ProductList'
 import Cart from './pages/cart';
+import { Router, Routes } from 'react-router-dom';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -29,10 +30,11 @@ function App() {
 
   return (
     <>
-    <h2>המוצרים שלנו</h2>
+      <h2>המוצרים שלנו</h2>
       <button onClick={()=><Cart/>}>לסל הקניות</button>
+      <Cart/>
       {products&&<ProductList products={products}/>}
-    </>
+    </>  
   )
 }
 
