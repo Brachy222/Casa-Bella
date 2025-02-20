@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios';
 import './App.css'
-import ProductList from './ProductList'
+import ProductList from './pages/ProductList'
+import Cart from './pages/cart';
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -29,6 +30,7 @@ function App() {
   return (
     <>
     <h2>המוצרים שלנו</h2>
+      <button onClick={()=><Cart/>}>לסל הקניות</button>
       {products&&<ProductList products={products}/>}
     </>
   )

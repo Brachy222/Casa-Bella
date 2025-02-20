@@ -1,4 +1,4 @@
-import Product from "./Product";
+import Product from "../components/Product";
 
 const ProductList = (props) => {
     return ( 
