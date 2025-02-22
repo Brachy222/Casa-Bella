@@ -33,8 +33,9 @@ const ProductList = (props) => {
     return ( 
         <>
         {products.length>0?<ul>
+            {console.log("hellooooo!!!!!!!!!!!")}
         {console.log("products: " + products)}
-            {props.products.map((product) => {
+            {products.map((product) => {
             return <li key={product._id}>
             <Product product={product} />
             </li>

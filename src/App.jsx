@@ -8,7 +8,7 @@ import NavBar from './components/NavBar';
 
 function App() {
   
-  let listCategoties = ["table", "livingRoom", "accessories", "packages"];
+  let listCategoties = {"table": "שולחן ואירוח", "livingRoom": "סלון ואווירה", "accessories": "אקססוריז", "packages": "מארזים"};
   return (
     <>
       <NavBar categoties={listCategoties}/>
