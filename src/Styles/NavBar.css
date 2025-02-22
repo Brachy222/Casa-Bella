@@ -3,19 +3,18 @@ nav{
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
-    color: white;
-    background-color: gray;
 }
 nav a{
     text-decoration: none;
     color: black;
     padding: 10px;
     margin: 5px;
+    font-weight: bold;
 }
 nav ul li{
     padding-bottom: 0;
 }
 nav a:hover{
     background-color: white;
-    color: black;
+    color: rgb(74, 72, 72);
 }

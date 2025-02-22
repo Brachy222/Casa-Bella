@@ -20,7 +20,6 @@ ul{
 }
 ul li{
   margin: 10px;
-  background-color: rgb(244, 244, 244);
   display: flex;
   flex-direction: column;
   align-items: center;
