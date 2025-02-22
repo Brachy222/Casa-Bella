@@ -4,7 +4,6 @@ import axios from 'axios';
 import Product from "../components/Product";
 
 const ProductList = (props) => {
-    const [api, setApi] = useState(props.api || 'https://project-in-node.onrender.com/api/products');
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
   
@@ -12,19 +11,19 @@ const ProductList = (props) => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                console.log("api: " + api);
-                const response = await axios.get(api);
+                const newCategory = props.category ? "category/" + props.category : "";
+                const url = `https://project-in-node.onrender.com/api/products/${newCategory}`;
+                console.log("url: " + url);
+                const response = await axios.get(url);
                 setProducts(response.data); 
                 console.log(response.data);
-                
             } catch (err) {
                 setError(err.message);
             }
         };
-  
+    
         fetchProducts();
-    }, []);
-
+    }, [props.category]);
     if (error) {
         return <div>Error: {error}</div>;
     }
@@ -34,7 +33,7 @@ const ProductList = (props) => {
         <>
         {products.length>0?<ul>
             {console.log("hellooooo!!!!!!!!!!!")}
-        {console.log("products: " + products)}
+            {console.log("products: " + products)}
             {products.map((product) => {
             return <li key={product._id}>
             <Product product={product} />
