@@ -3,37 +3,30 @@ import axios from 'axios';
 import './App.css'
 import ProductList from './pages/ProductList'
 import Cart from './pages/cart';
-import { Router, Routes } from 'react-router-dom';
+import { Router, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
 
 function App() {
-  const [products, setProducts] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-      const fetchProducts = async () => {
-          try {
-              const response = await axios.get('https://project-in-node.onrender.com/api/products');
-              setProducts(response.data); 
-              console.log(response.data);
-              
-          } catch (err) {
-              setError(err.message);
-          }
-      };
-
-      fetchProducts();
-  }, []);
-
-  if (error) {
-      return <div>Error: {error}</div>;
-  }
-
+  
+  let listCategoties = ["table", "livingRoom", "accessories", "packages"];
   return (
     <>
-      <h2>המוצרים שלנו</h2>
-      {/* <button onClick={()=><Cart/>}>לסל הקניות</button> */}
-      <Cart/>
-      {products&&<ProductList products={products}/>}
+      <NavBar categoties={listCategoties}/>
+      <Routes>
+          <Route path="/" element={<ProductList api='https://project-in-node.onrender.com/api/products'/>}/>
+          <Route path="/table" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/שולחן ואירוח'/>}/>
+          <Route path="/livingRoom" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/סלון ואווירה'/>}/>
+          <Route path="/accessories" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/אקססוריז'/>}/>
+          <Route path="/packages" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מארזים'/>}/>
+          <Route path="/tablecloths" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מפות'/>}/>
+          <Route path="/placement" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פלייסמנט'/>}/>
+          <Route path="/fragrance" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מפיץ ריח'/>}/>
+          <Route path="/flower" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פרחים מיובשים'/>}/>
+          <Route path="/home" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/אקססוריז לבית'/>}/>
+          <Route path="/candlesticks" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פמוטים'/>}/>
+          <Route path="/login" element={<p>login</p>}/>
+          <Route path="/cart" element={<Cart/>}/>        
+      </Routes>
     </>  
   )
 }
