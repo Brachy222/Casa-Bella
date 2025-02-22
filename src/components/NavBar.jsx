@@ -11,6 +11,12 @@ const NavBar = (props) => {
             {console.log(categoties)}
             <div id="navbarCategories">
             <ul>
+                <li key={"home"}>
+                    <Link to="/home">דף הבית</Link>
+                </li>
+                <li key={"all"}>
+                    <Link to="/products">כל המוצרים</Link>
+                </li>
                 {Object.entries(categoties).map(([key, value]) => (
                     <li key={key}>
                         <Link to={`/${key}`}>{value + ">"}</Link>

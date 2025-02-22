@@ -14,6 +14,8 @@ function App() {
       <NavBar categoties={listCategoties}/>
       <Routes>
           <Route path="/" element={<ProductList api='https://project-in-node.onrender.com/api/products'/>}/>
+          <Route path="/products" element={<ProductList api='https://project-in-node.onrender.com/api/products'/>}/>
+          <Route path="/home" element={<p>דף הבית שלנו!!!</p>}/>
           <Route path="/table" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/table'/>}/>
           <Route path="/livingRoom" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/livingRoom'/>}/>
           <Route path="/accessories" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/accessories'/>}/>
