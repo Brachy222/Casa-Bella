@@ -14,16 +14,16 @@ function App() {
       <NavBar categoties={listCategoties}/>
       <Routes>
           <Route path="/" element={<ProductList api='https://project-in-node.onrender.com/api/products'/>}/>
-          <Route path="/table" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/שולחן ואירוח'/>}/>
-          <Route path="/livingRoom" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/סלון ואווירה'/>}/>
-          <Route path="/accessories" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/אקססוריז'/>}/>
-          <Route path="/packages" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מארזים'/>}/>
-          <Route path="/tablecloths" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מפות'/>}/>
-          <Route path="/placement" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פלייסמנט'/>}/>
-          <Route path="/fragrance" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/מפיץ ריח'/>}/>
-          <Route path="/flower" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פרחים מיובשים'/>}/>
-          <Route path="/home" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/אקססוריז לבית'/>}/>
-          <Route path="/candlesticks" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/פמוטים'/>}/>
+          <Route path="/table" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/table'/>}/>
+          <Route path="/livingRoom" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/livingRoom'/>}/>
+          <Route path="/accessories" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/accessories'/>}/>
+          <Route path="/packages" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/packages'/>}/>
+          <Route path="/tablecloths" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/tablecloths'/>}/>
+          <Route path="/placement" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/placement'/>}/>
+          <Route path="/fragrance" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/fragrance'/>}/>
+          <Route path="/flower" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/flower'/>}/>
+          <Route path="/home" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/home'/>}/>
+          <Route path="/candlesticks" element={<ProductList api='https://project-in-node.onrender.com/api/products/category/candlesticks'/>}/>
           <Route path="/login" element={<p>login</p>}/>
           <Route path="/cart" element={<Cart/>}/>        
       </Routes>
