@@ -11,14 +11,14 @@ const NavBar = (props) => {
             {console.log(categoties)}
             <div id="navbarCategories">
             <ul>
-                <li key={"home"}>
+                <li key={"home"} className='navDiv'>
                     <Link to="/home">דף הבית</Link>
                 </li>
-                <li key={"all"}>
+                <li key={"all"} className='navDiv'>
                     <Link to="/products">כל המוצרים</Link>
                 </li>
                 {Object.entries(categoties).map(([key, value]) => (
-                    <li key={key}>
+                    <li key={key} className='navDiv'>
                         <Link to={`/${key}`}>{value + ">"}</Link>
                     </li>
                 ))}

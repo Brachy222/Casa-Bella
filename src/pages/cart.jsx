@@ -13,6 +13,13 @@ const Cart = () => {
                 <li key={item._id}>
                     <p>{item.productName} </p>
                     <p> כמות: {item.qty}</p>
+                    {/* <input 
+                    className="cnt-products"
+                    type="number" 
+                    value={item.qty} 
+                    min="1"
+                    onChange={(e) => changeQty=()=>{(item.qty=e.target.value)}} 
+                    /> */}
                 </li>
             ))}
             </ul>

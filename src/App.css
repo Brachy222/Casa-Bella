@@ -27,6 +27,7 @@ ul li{
   justify-content: center;
   text-align: center;
   padding-bottom: 25px;
+  background-color: rgb(245, 245, 245);
 }
 img{
   width: 310px;
@@ -35,4 +36,7 @@ img{
 .cnt-products{
   width: 27px;
   margin-left: 10px;
+}
+.navDiv{
+  background-color: rgb(255, 255, 255);
 }
