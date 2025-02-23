@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import "../styles/NavBar.css";
 
 
 const NavBar = (props) => {
     const {categoties} = props;
+    const user = useSelector(state => state.user.currentUser);
     
     return ( 
         <>
@@ -25,6 +27,7 @@ const NavBar = (props) => {
             </ul>
             </div>
             <div id="privateArea">
+                {user&&<span>שלום, {user.name}</span>}
                 <Link to="/cart">עגלה</Link>
                 <Link to="/login">התחברות</Link>
             </div>
