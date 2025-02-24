@@ -6,6 +6,7 @@ import Cart from './pages/cart';
 import { Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Login from './pages/Login';
+import HomePage from './pages/HomePage';
 
 function App() {
   
@@ -16,7 +17,7 @@ function App() {
       <Routes>
           <Route path="/" element={<ProductList/>}/>
           <Route path="/products" element={<ProductList/>}/>
-          <Route path="/home" element={<p>דף הבית שלנו!!!</p>}/>
+          <Route path="/home" element={<HomePage/>}/>
           <Route path="/table" element={<ProductList category='table'/>}/>
           <Route path="/livingRoom" element={<ProductList category='livingRoom'/>}/>
           <Route path="/accessories" element={<ProductList category='accessories'/>}/>
