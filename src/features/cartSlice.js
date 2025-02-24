@@ -25,9 +25,19 @@ const cartSlice = createSlice({
             if (index > -1) {
             state.arr[index].qty = qty;
             } 
+        },
+        deleteFromCart: (state, action) => {
+            const { _id } = action.payload;
+            const itemToRemove = state.arr.find(item => item._id === _id);
+    
+            if (itemToRemove) {
+            state.arr = state.arr.filter(item => item._id !== _id);
+            state.count -= itemToRemove.qty;
+            state.sum -= itemToRemove.qty * itemToRemove.price;
         }
+      }
     }
 });
 
-export const  {addToCart,updateQuantity} = cartSlice.actions;
+export const  {addToCart,updateQuantity,deleteFromCart} = cartSlice.actions;
 export default cartSlice.reducer;

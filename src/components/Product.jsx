@@ -7,7 +7,7 @@ const Product = ({ product }) => {
     const [count, setCount] = useState(1);
 
     const handleAddToCart = () => {
-        dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName})); 
+        dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName,image:product.image,price:product.price})); 
         console.log("נוסף לסל:", { _id: product._id, qty: Number(count) });
         alert("מוצר נוסף בהצלחה!") 
     };
