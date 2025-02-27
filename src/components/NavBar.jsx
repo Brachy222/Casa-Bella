@@ -29,7 +29,9 @@ const NavBar = (props) => {
             <div id="privateArea">
                 {user&&<span>שלום, {user.name}</span>}
                 <Link to="/cart">עגלה</Link>
-                <Link to="/login">התחברות</Link>
+                <Link to="/login">כניסה</Link>
+                <Link to="/signUp">הרשמה</Link>
+
             </div>
             
         </nav>

@@ -6,6 +6,7 @@ import Cart from './pages/cart';
 import { Router, Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import HomePage from './pages/HomePage';
 
 function App() {
@@ -28,7 +29,8 @@ function App() {
           <Route path="/flower" element={<ProductList category='flower'/>}/>
           <Route path="/home" element={<ProductList category='home'/>}/>
           <Route path="/candlesticks" element={<ProductList category='candlesticks'/>}/>
-          <Route path="/login" element={<Login/>}/>
+          {/* <Route path="/login" element={<Login/>}/> */}
+          <Route path="/Signup" element={<Signup/>}/>
           <Route path="/cart" element={<Cart/>}/>        
       </Routes>
     </>  
