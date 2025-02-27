@@ -1,32 +1,39 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { userIn } from "../features/userSlice";
+import { httpAddCustomer } from "../api/customerService";
+// import { userIn } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Signup.css"; 
 
-const Login = () => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+const Signup = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const onSubmit = (data) => {
-        dispatch(userIn(data)); 
-        console.log("User Registered:", data);
-        navigate("/products");
-    };
+    const save = (data) => {
+        console.log("נשלח לשרת:", data);
+        httpAddCustomer(data).then(res => {
+            alert("משתמש נרשם בהצלחה")
+            navigate("/ProductList")
+
+        }).catch(err => {
+            console.log(err);
+            alert("שגיאה בהרשמה")
+        })
+    }
 
     return (
         <div className="register-container">
             <h2>הרשמה</h2>
-            <form onSubmit={handleSubmit(onSubmit)} className="register-form">
+            <form noValidate onSubmit={handleSubmit(save)} className="register-form">
                 
                 <div className="input-group">
                     <label>שם מלא</label>
                     <input 
                         type="text"
-                        {...register("name", { required: "שדה חובה", minLength: { value: 2, message: "השם חייב להכיל לפחות 2 תווים" } })}
+                        {...register("userName", { required: "שדה חובה", minLength: { value: 2, message: "השם חייב להכיל לפחות 2 תווים" } })}
                     />
-                    {errors.name && <p className="error">{errors.name.message}</p>}
+                    {errors.userName && <p className="error">{errors.userName.message}</p>}
                 </div>
 
                 <div className="input-group">
@@ -51,7 +58,7 @@ const Login = () => {
                     {errors.password && <p className="error">{errors.password.message}</p>}
                 </div>
 
-                <div className="input-group">
+                {/* <div className="input-group">
                     <label>אימות סיסמה</label>
                     <input 
                         type="password"
@@ -61,7 +68,7 @@ const Login = () => {
                         })}
                     />
                     {errors.confirmPassword && <p className="error">{errors.confirmPassword.message}</p>}
-                </div>
+                </div> */}
 
                 <button type="submit" className="register-button">הרשם</button>
             </form>
@@ -69,4 +76,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signup;
