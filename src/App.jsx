@@ -16,7 +16,7 @@ function App() {
     <>
       <NavBar categoties={listCategoties}/>
       <Routes>
-          <Route path="/" element={<ProductList/>}/>
+          <Route path="/" element={<HomePage/>}/>
           <Route path="/products" element={<ProductList/>}/>
           <Route path="/home" element={<HomePage/>}/>
           <Route path="/table" element={<ProductList category='table'/>}/>
