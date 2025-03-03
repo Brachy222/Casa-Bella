@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { httpAddCustomer } from "../api/customerService";
-// import { userIn } from "../features/userSlice";
+import { userIn } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Signup.css"; 
 
@@ -20,8 +20,11 @@ const Signup = () => {
     const save = (data) => {
         console.log("נשלח לשרת:", data);
         httpAddCustomer(data).then(res => {
+            const user = res.data;
+            dispatch(userIn(user));
+            // localStorage.setItem("user", JSON.stringify(user));
             alert("משתמש נרשם בהצלחה")
-            navigate("/ProductList")
+            navigate("/Products")
 
         }).catch(err => {
             console.log(err);

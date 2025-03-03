@@ -6,7 +6,7 @@ import "../styles/NavBar.css";
 const NavBar = (props) => {
     const {categoties} = props;
     const user = useSelector(state => state.user.currentUser);
-    
+    console.log("משתמש נוכחי",user);
     return ( 
         <>
         <nav>
@@ -27,7 +27,7 @@ const NavBar = (props) => {
             </ul>
             </div>
             <div id="privateArea">
-                {user&&<span>שלום, {user.name}</span>}
+                {user&&<span>שלום, {user.userName||user.name}</span>}
                 <Link to="/cart">עגלה 🛒</Link>
                 <Link to="/login">כניסה</Link>
                 <Link to="/signUp">הרשמה</Link>
