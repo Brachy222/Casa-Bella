@@ -27,7 +27,7 @@ const NavBar = (props) => {
             </ul>
             </div>
             <div id="privateArea">
-                {user&&<span>שלום, {user.userName||user.name}</span>}
+                {user&&<span>שלום, {user.user.userName}</span>}
                 <Link to="/cart">עגלה 🛒</Link>
                 <Link to="/login">כניסה</Link>
                 <Link to="/signUp">הרשמה</Link>
