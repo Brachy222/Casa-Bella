@@ -6,7 +6,14 @@ import { useNavigate } from "react-router-dom";
 import "../Styles/Signup.css"; 
 
 const Signup = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: {
+            userName: "",
+            email: "",
+            password: "",
+            phone: ""
+        }
+    });
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -57,7 +64,12 @@ const Signup = () => {
                     />
                     {errors.password && <p className="error">{errors.password.message}</p>}
                 </div>
-
+                <div className="input-group">
+                <label>טלפון</label>
+                <input type="text" {...register("phone", {
+            required: { value: true, message: "phone is required" },
+                    })} />
+                </div>
                 {/* <div className="input-group">
                     <label>אימות סיסמה</label>
                     <input 
