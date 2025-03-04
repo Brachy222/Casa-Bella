@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import HomePage from './pages/HomePage';
+import Add from './pages/Add';
 
 function App() {
   
@@ -31,7 +32,8 @@ function App() {
           <Route path="/candlesticks" element={<ProductList category='candlesticks'/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/Signup" element={<Signup/>}/>
-          <Route path="/cart" element={<Cart/>}/>        
+          <Route path="/cart" element={<Cart/>}/>
+          <Route path='/add' element={<Add/>}/>        
       </Routes>
     </>  
   )

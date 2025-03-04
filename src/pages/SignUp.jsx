@@ -73,17 +73,6 @@ const Signup = () => {
             required: { value: true, message: "phone is required" },
                     })} />
                 </div>
-                {/* <div className="input-group">
-                    <label>אימות סיסמה</label>
-                    <input 
-                        type="password"
-                        {...register("confirmPassword", { 
-                            required: "שדה חובה", 
-                            validate: value => value === watch("password") || "הסיסמאות לא תואמות"
-                        })}
-                    />
-                    {errors.confirmPassword && <p className="error">{errors.confirmPassword.message}</p>}
-                </div> */}
 
                 <button type="submit" className="register-button">הרשם</button>
             </form>
