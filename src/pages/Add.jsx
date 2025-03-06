@@ -38,7 +38,7 @@ const AddProduct = () => {
                 
                 <div className="input-group">
                     <label>שם מוצר:</label>
-                    <input {...register("productName", { required: "שדה חובה" })} />
+                    <input type="text"{...register("productName", { required: "שדה חובה" })} />
                     {errors.productName && <p className="error">{errors.productName.message}</p>}
                 </div>
 
@@ -50,19 +50,19 @@ const AddProduct = () => {
 
                 <div className="input-group">
                     <label>צבע:</label>
-                    <input {...register("color", { required: "שדה חובה" })} />
+                    <input type="text"{...register("color", { required: "שדה חובה" })} />
                     {errors.color && <p className="error">{errors.color.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>גודל:</label>
-                    <input {...register("size", { required: "שדה חובה" })} />
+                    <input type="text"{...register("size", { required: "שדה חובה" })} />
                     {errors.size && <p className="error">{errors.size.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>תמונה (URL):</label>
-                    <input type="url" {...register("image", { required: "שדה חובה" })} />
+                    <input type="text" {...register("image", { required: "שדה חובה" })} />
                     {errors.image && <p className="error">{errors.image.message}</p>}
                 </div>
 
@@ -75,9 +75,10 @@ const AddProduct = () => {
                 <div className="input-group">
                     <label>קטגוריות:</label>
                     <select multiple {...register("categories", { required: "יש לבחור לפחות קטגוריה אחת" })}>
-                        {Object.entries(listCategories).map(([key, value]) => (
-                            <option key={key} value={key}>{value}</option>
-                        ))}
+                            <option >שולחן וארוח</option>
+                            <option >סלון ואוירה</option>
+                            <option >אקססוריז</option>
+                            <option >מארזים</option>
                     </select>
                     {errors.categories && <p className="error">{errors.categories.message}</p>}
                 </div>
