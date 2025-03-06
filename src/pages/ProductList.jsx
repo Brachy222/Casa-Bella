@@ -7,7 +7,7 @@ import Stack from '@mui/material/Stack';
 const ProductList = (props) => {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1); // עמוד נוכחי
+    const [currentPage, setCurrentPage] = useState(1); 
     const [totalPages, setTotalPages] = useState(1);
     const productsPerPage = 8;
 
@@ -18,24 +18,21 @@ const ProductList = (props) => {
                 const url = `https://project-in-node.onrender.com/api/products/${newCategory}?page=${currentPage}&limit=${productsPerPage}`;
                 console.log("url: " + url);
                 const response = await axios.get(url);
-                setProducts(response.data.products); // עדכון המוצרים
-                setTotalPages(response.data.totalPages); // עדכון מספר הדפים הכללי
+                setProducts(response.data.products); 
+                setTotalPages(response.data.totalPages);
                 console.log(response.data);
             } catch (err) {
-                setError(err.message); // טיפול בשגיאות
+                setError(err.message); 
             }
         };
-
         fetchProducts();
-    }, [props.category, currentPage]); // כל שינוי בקטגוריה או עמוד יגרום להחזרת מוצרים חדשים
-
+    }, [props.category, currentPage]); 
     if (error) {
         return <div>Error: {error}</div>;
     }
 
-    // פונקציה שמטפלת בשינוי עמוד
     const handlePageChange = (event, pageNumber) => {
-        setCurrentPage(pageNumber); // עדכון העמוד הנוכחי
+        setCurrentPage(pageNumber); 
     };
 
     return (
@@ -52,13 +49,12 @@ const ProductList = (props) => {
                 <p>loading...</p>
             )}
 
-            {/* כפתורי דפדוף */}
-            <div>
+            <div className='paging'>
                 <Stack spacing={2}>
                     <Pagination
                         count={totalPages} 
                         page={currentPage} 
-                        onChange={handlePageChange} // פעולה שיתבצע כשנלחץ על כפתור דף
+                        onChange={handlePageChange} 
                         shape="rounded"
                     />
                 </Stack>

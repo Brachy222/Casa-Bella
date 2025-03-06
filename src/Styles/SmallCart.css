@@ -1,0 +1,31 @@
+.li-cart-small {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .img-cart-small {
+    width: 100px; /* גודל קטן יותר של התמונה */
+    height: 80px;
+    object-fit: cover;
+    margin-left: 10px; /* רווח בין התמונה לפרטים */
+  }
+  
+  .div-in-cart-small {
+    flex-grow: 1;
+    text-align: left; /* מיושר לשמאל */
+  }
+  
+  .div-in-cart-small p {
+    margin: 2px 0; 
+    font-size: 15px; 
+  }
+  
+  .cart-summary {
+    text-align: right;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  

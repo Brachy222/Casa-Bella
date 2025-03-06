@@ -4,7 +4,8 @@ import { createSlice } from "@reduxjs/toolkit"
 const initialState = {
     arr: [],
     sum: 0,
-    count: 0
+    count: 0,
+    isOpen: false,
 }
 const cartSlice = createSlice({
     name: "cart",
@@ -18,6 +19,7 @@ const cartSlice = createSlice({
             } else {
                 state.arr.push({ ...action.payload ,qty:qty});
             }
+            state.isOpen = true;
         },
         updateQuantity: (state, action) => {
             let { _id, qty } = action.payload; 
@@ -35,9 +37,12 @@ const cartSlice = createSlice({
             state.count -= itemToRemove.qty;
             state.sum -= itemToRemove.qty * itemToRemove.price;
         }
-      }
+      },
+      closeCartDialog: (state) => {
+        state.isOpen = false;
+      },
     }
 });
 
-export const  {addToCart,updateQuantity,deleteFromCart} = cartSlice.actions;
+export const  {addToCart,updateQuantity,deleteFromCart,closeCartDialog,openCartDialog} = cartSlice.actions;
 export default cartSlice.reducer;

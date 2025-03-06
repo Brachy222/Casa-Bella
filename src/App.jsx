@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import HomePage from './pages/HomePage';
 import Add from './pages/Add';
 import UpdateProduct from './pages/update';
+import SmallCart from './pages/SmallCart';
 
 function App() {
   
@@ -35,7 +36,8 @@ function App() {
           <Route path="/Signup" element={<Signup/>}/>
           <Route path="/cart" element={<Cart/>}/>
           <Route path='/add' element={<Add/>}/> 
-          <Route path='/update' element={<UpdateProduct/>}/>               
+          <Route path='/update' element={<UpdateProduct/>}/>
+          <Route path='/smallCart' element={<SmallCart/>}/>               
       </Routes>
     </>  
   )
