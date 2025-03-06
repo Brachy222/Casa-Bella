@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import "../Styles/Signup.css";
 
 const AddProduct = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         defaultValues: {
             productName: "",
-            ProductionDate: "",
+            productionDate: "",
             color: "",
             size: "",
             image: "",
@@ -18,16 +18,21 @@ const AddProduct = () => {
 
     const navigate = useNavigate();
 
-    const listCategories = {"table": "שולחן ואירוח", "livingRoom": "סלון ואווירה", "accessories": "אקססוריז", "packages": "מארזים"};
+    const listCategories = {
+        table: "שולחן ואירוח",
+        livingRoom: "סלון ואווירה",
+        accessories: "אקססוריז",
+        packages: "מארזים"
+    };
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        httpAddProduct(data).then(res => {
+        httpAddProduct(data).then(() => {
             alert("מוצר נוסף בהצלחה");
             navigate("/Products");
         }).catch(err => {
-            console.log(err);
-            alert("שגיאה בהוספה");
+            console.error("שגיאת שרת:", err);
+            alert(`שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
         });
     };
 
@@ -35,50 +40,61 @@ const AddProduct = () => {
         <div className="register-container">
             <h2>הוספת מוצר</h2>
             <form noValidate onSubmit={handleSubmit(save)} className="register-form">
-                
                 <div className="input-group">
                     <label>שם מוצר:</label>
-                    <input type="text"{...register("productName", { required: "שדה חובה" })} />
+                    <input type="text" {...register("productName", { required: "שדה חובה" })} />
                     {errors.productName && <p className="error">{errors.productName.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>תאריך ייצור:</label>
-                    <input type="date" {...register("ProductionDate", { required: "שדה חובה" })} />
-                    {errors.ProductionDate && <p className="error">{errors.ProductionDate.message}</p>}
+                    <input type="date" {...register("productionDate", { required: "שדה חובה" })} />
+                    {errors.productionDate && <p className="error">{errors.productionDate.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>צבע:</label>
-                    <input type="text"{...register("color", { required: "שדה חובה" })} />
+                    <input type="text" {...register("color", { required: "שדה חובה" })} />
                     {errors.color && <p className="error">{errors.color.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>גודל:</label>
-                    <input type="text"{...register("size", { required: "שדה חובה" })} />
+                    <input type="text" {...register("size", { required: "שדה חובה" })} />
                     {errors.size && <p className="error">{errors.size.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>תמונה (URL):</label>
-                    <input type="text" {...register("image", { required: "שדה חובה" })} />
+                    <input type="text" {...register("image", {
+                        required: "שדה חובה",
+                        pattern: {
+                            value: /^(\.\.\/)?images\/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif)$/,
+                            message: "יש להכניס כתובת תמונה תקפה"
+                        }
+                    })} />
                     {errors.image && <p className="error">{errors.image.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>מחיר:</label>
-                    <input type="number" {...register("price", { required: "שדה חובה", min: { value: 0, message: "המחיר חייב להיות חיובי" } })} />
+                    <input type="number" {...register("price", {
+                        required: "שדה חובה",
+                        min: { value: 0, message: "המחיר חייב להיות חיובי" }
+                    })} />
                     {errors.price && <p className="error">{errors.price.message}</p>}
                 </div>
 
                 <div className="input-group">
                     <label>קטגוריות:</label>
-                    <select multiple {...register("categories", { required: "יש לבחור לפחות קטגוריה אחת" })}>
-                            <option >שולחן וארוח</option>
-                            <option >סלון ואוירה</option>
-                            <option >אקססוריז</option>
-                            <option >מארזים</option>
+                    <select multiple {...register("categories", { required: "יש לבחור לפחות קטגוריה אחת" })} 
+                        onChange={(e) => {
+                            const selectedOptions = [...e.target.selectedOptions].map(option => option.value);
+                            setValue("categories", selectedOptions);
+                        }}>
+                        {Object.entries(listCategories).map(([key, value]) => (
+                            <option key={key} value={key}>{value}</option>
+                        ))}
                     </select>
                     {errors.categories && <p className="error">{errors.categories.message}</p>}
                 </div>
