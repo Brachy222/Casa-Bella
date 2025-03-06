@@ -9,7 +9,7 @@ const NavBar = (props) => {
     console.log("משתמש נוכחי",user);
     return ( 
         <>
-        <nav>
+        <nav className='nav-bar'>
             {console.log(categoties)}
             <div id="navbarCategories">
             <ul>
@@ -27,9 +27,10 @@ const NavBar = (props) => {
             </ul>
             </div>
             <div id="privateArea">
-                <Link to="/add">הוספה</Link>                                                                                                                                  
+                <Link to="/add">הוספה</Link>
+                <Link to="/update">עדכון</Link>                                                                                                                                  
                 {user&&<span>שלום, {user.user.userName}</span>}
-                <Link to="/cart">עגלה 🛒</Link>
+                <Link to="/cart">סל קניות</Link>
                 <Link to="/login">כניסה</Link>
                 <Link to="/signUp">הרשמה</Link>
 

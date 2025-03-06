@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { httpAddProduct } from "../api/productService";
-import { useNavigate } from "react-router-dom";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import "../Styles/Signup.css";
 
 const AddProduct = () => {
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue,reset } = useForm({
         defaultValues: {
             productName: "",
             productionDate: "",
@@ -16,20 +16,24 @@ const AddProduct = () => {
         }
     });
 
-    const navigate = useNavigate();
-
     const listCategories = {
         table: "שולחן ואירוח",
         livingRoom: "סלון ואווירה",
         accessories: "אקססוריז",
-        packages: "מארזים"
+        packages: "מארזים",
+        candlesticks:"פמוטות",
+        flower:"פרחים",
+        fragrance:"מפיצי ריח",
+        placement:"פלייסמט",
+        tablecloths:"מפות",
+        home: "לבית"
     };
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
         httpAddProduct(data).then(() => {
             alert("מוצר נוסף בהצלחה");
-            navigate("/Products");
+            reset();
         }).catch(err => {
             console.error("שגיאת שרת:", err);
             alert(`שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);

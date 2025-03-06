@@ -8,5 +8,5 @@ export const httpAddProduct = (product) => {
 }
 
 export const httpUpdateProduct = (product) => {
-    return axios.put(baseUrl+"/"+product._id,product);
+    return axios.put(baseUrl+"/"+product.productName,product);
 }
