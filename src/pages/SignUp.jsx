@@ -73,6 +73,14 @@ const Signup = () => {
             required: { value: true, message: "phone is required" },
                     })} />
                 </div>
+                {/* <div className="input-group">
+                    <label>סוג משתמש</label>
+                    <select {...register("role", { required: "יש לבחור סוג משתמש" })}>
+                        <option value="user">משתמש רגיל</option>
+                        <option value="admin">מנהל</option>
+                    </select>
+                    {errors.role && <p className="error">{errors.role.message}</p>}
+                </div> */}
 
                 <button type="submit" className="register-button">הרשם</button>
             </form>

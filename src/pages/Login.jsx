@@ -18,6 +18,7 @@ const Login = () => {
         console.log("נשלח לשרת:", data);
         httpLoginCustomer(data).then(res => {
             const user = res.data;
+            console.log(user);
             dispatch(userIn(user));
             // localStorage.setItem("user", JSON.stringify(user));
             navigate("/Products")
