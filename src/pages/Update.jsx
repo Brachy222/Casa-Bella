@@ -1,12 +1,14 @@
 import { useForm } from "react-hook-form";
-import { httpUpdateProduct } from "../api/productService";
-import { useNavigate } from "react-router-dom";
+import { httpUpdateProduct, httpGetproductById } from "../api/productService";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "../Styles/Signup.css";
 
 const UpdateProduct = () => {
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm({});
-
+    const { register, handleSubmit, formState: { errors }, reset } = useForm({});
+    const { id } = useParams();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
     
     const listCategories = {
         table: "שולחן ואירוח",
@@ -15,16 +17,47 @@ const UpdateProduct = () => {
         packages: "מארזים"
     };
 
+    useEffect(() => {
+        if (id) {
+            httpGetproductById(id).then(res => {
+                console.log("נתוני מוצר שהתקבלו:", res);
+                
+                reset({
+                    productName: res.productName,
+                    productionDate: res.productionDate,
+                    color: res.color,
+                    size: res.size,
+                    image: res.image,
+                    price: res.price,
+                    categories: res.categories || []
+                });
+
+                setLoading(false);
+            }).catch(err => {
+                console.error("שגיאה בקבלת נתוני המוצר:", err);
+                alert("שגיאה בטעינת נתוני המוצר.");
+                setLoading(false);
+            });
+        }
+    }, [id, reset]);
+
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        httpUpdateProduct(data).then(() => {
-            alert("מוצר עודכן בהצלחה");
-            navigate("/Products");
-        }).catch(err => {
-            console.error("שגיאת שרת:", err);
-            alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
-        });
+        
+        httpUpdateProduct({ ...data, id })
+            .then(() => {
+                alert("מוצר עודכן בהצלחה!");
+                navigate("/Products");
+            })
+            .catch(err => {
+                console.error("שגיאת שרת:", err);
+                alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+            });
     };
+
+    if (loading) {
+        return <h2>טוען נתוני מוצר...</h2>;
+    }
 
     return (
         <div className="register-container">
@@ -76,7 +109,10 @@ const UpdateProduct = () => {
                     <select multiple {...register("categories")} 
                         onChange={(e) => {
                             const selectedOptions = [...e.target.selectedOptions].map(option => option.value);
-                            setValue("categories", selectedOptions);
+                            reset((prevValues) => ({
+                                ...prevValues,
+                                categories: selectedOptions
+                            }));
                         }}>
                         {Object.entries(listCategories).map(([key, value]) => (
                             <option key={key} value={key}>{value}</option>

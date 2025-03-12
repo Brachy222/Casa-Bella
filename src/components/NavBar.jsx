@@ -27,16 +27,24 @@ const NavBar = (props) => {
             </ul>
             </div>
             <div id="privateArea">
-            {user?.user.role === "admin" && (
+            {user&&user.role === "admin" && (
             <>
                 <Link to="/add">הוספה</Link>
                 <Link to="/update">עדכון</Link> 
-        </>
-    )}                                                                                                                             
-                {user && <span>שלום, {user.user?.userName || "אורח"}</span>}
+           </>
+          )}                                                                                                                             
+                {user ? (<>
+                <span>שלום, {user?.userName || "אורח"}</span>
+                <Link to="/login">יציאה</Link>
+                </>
+                ) : (
+               <>
+                   <span>שלום, אורח</span>
+                   <Link to="/login">כניסה</Link>
+                   <Link to="/signUp">הרשמה</Link>
+               </>
+           )}
                 <Link to="/cart">סל קניות</Link>
-                <Link to="/login">כניסה</Link>
-                <Link to="/signUp">הרשמה</Link>
 
             </div>
             

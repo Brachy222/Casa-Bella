@@ -14,3 +14,7 @@ export const httpUpdateProduct = (product) => {
 export const httpDeleteProduct = (id) => {
     return axios.delete(baseUrl+"/"+id);
 }
+
+export const httpGetproductById = (id) => {
+    return axios.get(baseUrl+"/"+id);
+}

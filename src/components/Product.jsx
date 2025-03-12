@@ -3,7 +3,7 @@ import { addToCart } from "../features/cartSlice";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import {httpDeleteProduct} from "../api/productService"
+import {httpDeleteProduct,httpUpdateProduct} from "../api/productService"
 
 
 const Product = ({ product }) => {
@@ -27,6 +27,10 @@ const Product = ({ product }) => {
         })
     }
 
+    const updateProduct = (id) => {
+        navigate(`/update/${id}`); 
+    }
+
     return ( 
         <div className="product">
             <img src={product.image} alt={product.name} />
@@ -40,9 +44,10 @@ const Product = ({ product }) => {
                 onChange={(e) => setCount(e.target.value)} 
             />
             <button onClick={handleAddToCart}>הוסף לסל</button>
-            {user?.user.role === "admin" && (
+            {user&&user?.role === "admin" && (
             <>
-                    <button onClick={() => deleteProduct(product._id)}>מחק מוצר</button>
+                    <button onClick={() => deleteProduct(product._id)}>מחק</button>
+                    <button onClick={() => updateProduct(product._id)}>עדכן</button>
             </>
         )}      
         </div>
