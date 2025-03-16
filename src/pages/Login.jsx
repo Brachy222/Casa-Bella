@@ -21,7 +21,7 @@ const Login = () => {
             console.log("המשתמש המחובר כעת",user);
             dispatch(userIn(user));
             localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("token", JSON.stringify(user.token))
+            localStorage.setItem("token",user.token)
             navigate("/Products")
         }).catch(err => {
             console.log(err);

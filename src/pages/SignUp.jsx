@@ -24,7 +24,7 @@ const Signup = () => {
             dispatch(userIn(user));
             console.log(user);
             localStorage.setItem("user", JSON.stringify(user));
-            localStorage.setItem("token", JSON.stringify(user.token));
+            localStorage.setItem("token",user.token)
             alert("משתמש נרשם בהצלחה")
             navigate("/Products")
 

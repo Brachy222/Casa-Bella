@@ -31,7 +31,7 @@ const AddProduct = () => {
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        token  = localStorage.getItem(token)
+        let token  = localStorage.getItem("token")
         httpAddProduct(data,token).then(() => {
             alert("מוצר נוסף בהצלחה");
             reset();
