@@ -16,13 +16,13 @@ const Login = () => {
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        httpLoginCustomer(data).then(res => {
+        httpLoginCustomer(data,data.token).then(res => {
             const user = res.data;
             console.log("המשתמש המחובר כעת",user);
             dispatch(userIn(user));
-            // localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", JSON.stringify(user.token))
             navigate("/Products")
-
         }).catch(err => {
             console.log(err);
             alert("משתמש לא רשום")

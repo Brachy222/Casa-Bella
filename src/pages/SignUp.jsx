@@ -23,7 +23,8 @@ const Signup = () => {
             const user = res.data;
             dispatch(userIn(user));
             console.log(user);
-            // localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("user", JSON.stringify(user));
+            localStorage.setItem("token", JSON.stringify(user.token));
             alert("משתמש נרשם בהצלחה")
             navigate("/Products")
 
