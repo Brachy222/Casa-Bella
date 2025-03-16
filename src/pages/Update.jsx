@@ -56,7 +56,7 @@ const UpdateProduct = () => {
     };
 
     if (loading) {
-        return <h2>טוען נתוני מוצר...</h2>;
+        return <h3>טוען נתוני מוצר...</h3>;
     }
 
     return (
