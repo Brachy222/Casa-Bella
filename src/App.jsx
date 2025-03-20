@@ -9,8 +9,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import HomePage from './pages/HomePage';
 import Add from './pages/Add';
-import UpdateProduct from './pages/update';
+import UpdateProduct from './pages/Update';
 import SmallCart from './pages/SmallCart';
+import Order from './pages/Order';
 
 function App() {
   
@@ -37,7 +38,9 @@ function App() {
           <Route path="/cart" element={<Cart/>}/>
           <Route path='/add' element={<Add/>}/> 
           <Route path='/update/:id' element={<UpdateProduct/>}/>
-          <Route path='/smallCart' element={<SmallCart/>}/>               
+          <Route path='/smallCart' element={<SmallCart/>}/>
+          <Route path='/order' element={<Order/>}/>               
+               
       </Routes>
     </>  
   )

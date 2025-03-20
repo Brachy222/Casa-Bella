@@ -52,6 +52,7 @@ const NavBar = (props) => {
                     <Link to="/cart">
                         <ShoppingCart style={{ color: "black" }} />
                     </Link>
+                    {user && <Link to="/order">  סיום הזמנה </Link>}
                 </div>
             </nav>
         </>
