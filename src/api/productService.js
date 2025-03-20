@@ -11,15 +11,15 @@ export const httpAddProduct = (product,token) => {
     });
 }
 
-export const httpUpdateProduct = (product) => {
+export const httpUpdateProduct = (product, token) => {
     return axios.put(baseUrl+"/"+product.productName,product,{
         headers:{
-            "Authorization" : `Bearer ${product.token}`
+            "Authorization" : `Bearer ${token}`
         }
     });
 }
 
-export const httpDeleteProduct = (id) => {
+export const httpDeleteProduct = (id, token) => {
     return axios.delete(baseUrl+"/"+id,{
         headers:{
             "Authorization" : `Bearer ${token}`
