@@ -16,9 +16,11 @@ const Login = () => {
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        httpLoginCustomer(data,data.token).then(res => {
+        httpLoginCustomer(data).then(res => {
             const user = res.data;
             console.log("המשתמש המחובר כעת",user);
+            //עדכון currentUser
+            //  שבסטייט להיות המשתמש שנכנס
             dispatch(userIn(user));
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token",user.token)

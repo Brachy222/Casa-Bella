@@ -20,7 +20,7 @@ const UpdateProduct = () => {
     useEffect(() => {
         if (id) {
             httpGetproductById(id).then(res => {
-                console.log("נתוני מוצר שהתקבלו:", res);
+                console.log("נתוני מוצר שהתקבלו:", res, res.productName);
                 
                 reset({
                     productName: res.productName,

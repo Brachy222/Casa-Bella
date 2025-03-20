@@ -26,7 +26,7 @@ const Cart = () => {
         });
         setCnt(totalCnt);
         setSum(totalSum);
-        localStorage.setItem("cert",JSON.stringify(cart))
+        localStorage.setItem("cart",JSON.stringify(cart))
     }, [cart]);
     
     return (

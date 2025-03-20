@@ -13,7 +13,8 @@ const Product = ({ product }) => {
     const navigate = useNavigate();
 
     const handleAddToCart = () => {
-        dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName,image:product.image,price:product.price})); 
+        dispatch(addToCart({ ...product, qty: Number(count) })) 
+        // dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName,image:product.image,price:product.price})); 
         console.log("נוסף לסל:", { _id: product._id, qty: Number(count) });
         navigate("/smallCart") 
     };
