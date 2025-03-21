@@ -14,6 +14,8 @@ const cartSlice = createSlice({
         addToCart: (state, action) => {
             let { _id, qty } = action.payload; 
             let index = state.arr.findIndex(item => item._id == _id);
+            let productPrice = action.payload.price; 
+            let productCost = productPrice * qty; 
             if (index > -1) {
                 state.arr[index].qty += qty; 
             } else {

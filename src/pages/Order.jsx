@@ -1,14 +1,25 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import '../Styles/Order.css';
 
 const Order = () => {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, reset } = useForm();
     const cartItems = useSelector(state => state.cart.arr);
     const totalAmount = useSelector(state => state.cart.sum);
 
     console.log('Cart items:', cartItems);  
     console.log('Total amount:', totalAmount);
+
+    useEffect(() => {
+        reset({
+            fullName: JSON.parse(localStorage.getItem('user')).fullName,
+            shippingStreet: '',
+            shippingHouse: '',
+            shippingCity: ''
+        });
+    }, [reset]);
 
     const onSubmit = async (data) => {
         // כאן תוכל לבצע קריאה לשרת כדי לאשר את ההזמנה
@@ -21,9 +32,14 @@ const Order = () => {
         <div>
             <h1>סיום הזמנה</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <div>
+                <div id="end-personal-details">
+                    <label>שם מלא:</label>
+                    <input {...register('fullName', { required: true })} />
                     <label>כתובת למשלוח:</label>
-                    <input {...register('shippingAddress', { required: true })} />
+                    <input type='text' {...register('shippingStreet', { required: true })} placeholder='רחוב'/>
+                    <input type='number' {...register('shippingHouse', { required: true })} placeholder='מספר בית'/>
+                    <input type='text' {...register('shippingCity', { required: true })} placeholder='עיר'/>
+
                 </div>
                 <h2>רשימת מוצרים:</h2>
                 <ul>
