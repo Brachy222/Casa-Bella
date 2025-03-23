@@ -10,6 +10,8 @@ const Order = () => {
     const { register, handleSubmit, reset } = useForm();
     const cartItems = useSelector(state => state.cart.arr);
     const totalAmount = useSelector(state => state.cart.sum);
+    const productsYouBuy = useSelector(state => state.cart.arr);
+
 
     console.log('Cart items:', cartItems);  
     console.log('Total amount:', totalAmount);
@@ -26,7 +28,7 @@ const Order = () => {
     const onSubmit = async (data) => {
         console.log("נשלח לשרת:", data);
         let token  = JSON.parse(localStorage.getItem("token"));
-        httpAddOrder(data,token)
+        httpAddOrder(data, productsYouBuy, token)
             .then(() => {
                 alert("הזמנה בוצעה בהצלחה");
                 navigate("/Products");
