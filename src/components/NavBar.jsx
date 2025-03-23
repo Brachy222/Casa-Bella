@@ -48,11 +48,10 @@ const NavBar = (props) => {
                             <Link to="/signUp">הרשמה</Link>
                         </>
                     )}
-
+                    {user && <Link to="/order">  סיום הזמנה </Link>}
                     <Link to="/cart">
                         <ShoppingCart style={{ color: "black" }} />
                     </Link>
-                    {user && <Link to="/order">  סיום הזמנה </Link>}
                 </div>
             </nav>
         </>

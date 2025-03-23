@@ -14,7 +14,7 @@ const Order = () => {
 
     useEffect(() => {
         reset({
-            fullName: JSON.parse(localStorage.getItem('user')).fullName,
+            fullName: JSON.parse(localStorage.getItem('user')).userName,
             shippingStreet: '',
             shippingHouse: '',
             shippingCity: ''

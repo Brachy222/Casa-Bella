@@ -23,13 +23,13 @@ const UpdateProduct = () => {
                 console.log("נתוני מוצר שהתקבלו:", res, res.productName);
                 
                 reset({
-                    productName: res.productName,
-                    productionDate: res.productionDate,
-                    color: res.color,
-                    size: res.size,
-                    image: res.image,
-                    price: res.price,
-                    categories: res.categories || []
+                    productName: res.data.productName,
+                    productionDate: res.data.productionDate,
+                    color: res.data.color,
+                    size: res.data.size,
+                    image: res.data.image,
+                    price: res.data.price,
+                    categories: res.data.categories || []
                 });
 
                 setLoading(false);
@@ -89,7 +89,8 @@ const UpdateProduct = () => {
                     <label>תמונה:</label>
                     <input type="text" {...register("image", {
                         pattern: {
-                            value: /^(\.\.\/)?images\/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif)$/,
+                            value: /^\.\.\/images\/[a-zA-Z0-9_-]+\.(jpg|jpeg|png|gif|webp)$/
+                            ,
                             message: "יש להכניס כתובת תמונה תקפה"
                         }
                     })} />
