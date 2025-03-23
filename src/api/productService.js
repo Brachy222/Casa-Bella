@@ -11,8 +11,9 @@ export const httpAddProduct = (product,token) => {
     });
 }
 
-export const httpUpdateProduct = (product, token) => {
-    return axios.put(baseUrl+"/"+product._id,product,{
+export const httpUpdateProduct = (product, id, token) => {
+    console.log(id);
+    return axios.put(baseUrl+"/"+id,product,{
         headers:{
             "Authorization" : `Bearer ${token}`,
             "try": "hello"

@@ -44,7 +44,7 @@ const UpdateProduct = () => {
     const save = (data) => {
         console.log("נשלח לשרת:", data);
         let token  = JSON.parse(localStorage.getItem("token"));
-        httpUpdateProduct({ ...data, id },token)
+        httpUpdateProduct(data, id ,token)
             .then(() => {
                 alert("מוצר עודכן בהצלחה!");
                 navigate("/Products");

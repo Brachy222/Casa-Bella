@@ -32,7 +32,7 @@ const NavBar = (props) => {
                     {user && user.role === "admin" && (
                         <>
                             <Link to="/add">הוספה</Link>
-                            <Link to="/update">עדכון</Link>
+                            {/* <Link to="/update">עדכון</Link> */}
                         </>
                     )}
 
@@ -48,7 +48,7 @@ const NavBar = (props) => {
                             <Link to="/signUp">הרשמה</Link>
                         </>
                     )}
-                    {user && <Link to="/order">  סיום הזמנה </Link>}
+                    {/* {user && <Link to="/order">  סיום הזמנה </Link>} */}
                     <Link to="/cart">
                         <ShoppingCart style={{ color: "black" }} />
                     </Link>

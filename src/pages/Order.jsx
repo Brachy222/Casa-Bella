@@ -2,6 +2,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { httpAddOrder } from "../api/orderService";
+
 import '../Styles/Order.css';
 
 const Order = () => {
@@ -22,10 +24,17 @@ const Order = () => {
     }, [reset]);
 
     const onSubmit = async (data) => {
-        // כאן תוכל לבצע קריאה לשרת כדי לאשר את ההזמנה
-        console.log('Order data:', data);
-        // לדוגמה, קריאה ל-API
-        // await api.post('/orders', { ...data, items: cartItems });
+        console.log("נשלח לשרת:", data);
+        let token  = JSON.parse(localStorage.getItem("token"));
+        httpAddOrder(data,token)
+            .then(() => {
+                alert("הזמנה בוצעה בהצלחה");
+                navigate("/Products");
+            })
+            .catch(err => {
+                console.error("שגיאת שרת:", err);
+                alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+            });
     };
 
     return (
