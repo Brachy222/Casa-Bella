@@ -3,19 +3,18 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { httpAddOrder } from "../api/orderService";
+import { useNavigate } from "react-router-dom";
 
 import '../Styles/Order.css';
 
 const Order = () => {
     const { register, handleSubmit, reset } = useForm();
     const cartItems = useSelector(state => state.cart.arr);
-    const totalAmount = useSelector(state => state.cart.sum);
     const productsYouBuy = useSelector(state => state.cart.arr);
     const moneyToPay = useSelector(state => state.cart.sum);
-
+    const navigate = useNavigate();
 
     console.log('Cart items:', cartItems);  
-    console.log('Total amount:', totalAmount);
 
     useEffect(() => {
         reset({
@@ -65,7 +64,7 @@ const Order = () => {
                         </li>
                     ))}
                 </ul> */}
-                <h3>סכום לתשלום: {totalAmount} ₪</h3>
+                <h3>סכום לתשלום: {moneyToPay} ₪</h3>
                 <button type="submit">אישור הזמנה</button>
             </form>
         </div>
