@@ -35,7 +35,7 @@ const Order = () => {
             })
             .catch(err => {
                 console.error("שגיאת שרת:", err);
-                alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+                alert(`שגיאה בהזמנה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
             });
     };
 
