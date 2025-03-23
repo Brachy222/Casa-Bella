@@ -50,7 +50,7 @@ const Order = () => {
                     <input type='text' {...register('shippingCity', { required: true })} placeholder='עיר'/>
 
                 </div>
-                <h2>רשימת מוצרים:</h2>
+                {/* <h2>רשימת מוצרים:</h2>
                 <ul>
                     {cartItems.map(item => (
                         <li key={item.id}>
@@ -60,7 +60,7 @@ const Order = () => {
                             <p>כמות: {item.qty}</p>
                         </li>
                     ))}
-                </ul>
+                </ul> */}
                 <h3>סכום לתשלום: {totalAmount} ₪</h3>
                 <button type="submit">אישור הזמנה</button>
             </form>

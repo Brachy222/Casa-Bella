@@ -21,6 +21,8 @@ const cartSlice = createSlice({
             } else {
                 state.arr.push({ ...action.payload ,qty:qty});
             }
+            state.count += qty;
+            state.sum += productCost;
             state.isOpen = true;
         },
         updateQuantity: (state, action) => {
