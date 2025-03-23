@@ -9,6 +9,7 @@ export const httpAddOrder = (order, products ,token) => {
         cust_id : JSON.parse(localStorage.getItem("user"))._id,
         products: products,
     }
+    console.log("order:",order);
     return axios.post(baseUrl,order,{
         headers:{
             "Authorization" : `Bearer ${token}`
