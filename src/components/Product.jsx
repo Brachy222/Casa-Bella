@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {httpDeleteProduct,httpUpdateProduct} from "../api/productService"
+import IconButton from '@mui/material/IconButton';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 
 
 const Product = ({ product }) => {
@@ -44,7 +47,10 @@ const Product = ({ product }) => {
                 min="1"
                 onChange={(e) => setCount(e.target.value)} 
             />
-            <button onClick={handleAddToCart}>הוסף לסל</button>
+            <IconButton color="primary" aria-label="add to shopping cart">
+                <AddShoppingCartIcon onClick={handleAddToCart} />
+            </IconButton>
+            {/* <button onClick={handleAddToCart}>הוסף לסל</button> */}
             {user&&user?.role === "admin" && (
             <>
                     <button onClick={() => deleteProduct(product._id)}>מחק</button>

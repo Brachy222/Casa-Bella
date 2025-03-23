@@ -27,7 +27,7 @@ const Order = () => {
 
     const onSubmit = async (data) => {
         console.log("נשלח לשרת:", data);
-        let token  = JSON.parse(localStorage.getItem("token"));
+        let token  = localStorage.getItem("token");
         data = {...data, products: productsYouBuy, finallyPrice: moneyToPay};
         httpAddOrder(data, token)
             .then(() => {
