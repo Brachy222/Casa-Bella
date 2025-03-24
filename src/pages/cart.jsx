@@ -32,6 +32,7 @@ const Cart = () => {
         });
         setCnt(totalCnt);
         setSum(totalSum);
+        console.log("the cart",cart);
         localStorage.setItem("cart",JSON.stringify(cart))
     }, [cart]);
     
