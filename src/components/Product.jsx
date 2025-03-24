@@ -7,6 +7,7 @@ import {httpDeleteProduct,httpUpdateProduct} from "../api/productService"
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useTheme } from '@mui/material/styles';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -57,7 +58,9 @@ const Product = ({ product }) => {
             {/* <button onClick={handleAddToCart}>הוסף לסל</button> */}
             {user&&user?.role === "admin" && (
             <>
-                    <button onClick={() => deleteProduct(product._id)}>מחק</button>
+                <IconButton aria-label="delete">
+                    <DeleteIcon onClick={() => deleteProduct(product._id)}/>
+                </IconButton>
                     <button onClick={() => updateProduct(product._id)}>עדכן</button>
             </>
         )}      
