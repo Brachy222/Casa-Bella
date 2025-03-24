@@ -53,10 +53,14 @@ const Cart = () => {
                     </li>
                 ))}
             </ul>
-            <div className="cart-summary">
+            <div className="cart-summary-div">
                 <p>סה"כ מוצרים: {totalCount}</p>
-                <p>סה"כ לתשלום: {totalSum} ₪</p>
-                <button onClick={goToOrderPage}>הזמנה</button>
+                <p className="sum">סה"כ לתשלום: {totalSum} ₪</p>
+                <p>
+                    <input type="checkbox" id="terms" name="terms" />
+                    <label htmlFor="terms">אני מסכים/ה ל תנאי השימוש.</label>
+                </p>
+                <button className="order-button" onClick={goToOrderPage}>לתשלום והזמנה</button>
             </div>
         </div>
     );
