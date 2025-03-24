@@ -12,6 +12,7 @@ import Add from './pages/Add';
 import UpdateProduct from './pages/Update';
 import SmallCart from './pages/SmallCart';
 import Order from './pages/Order';
+import Logout from "./pages/Logout"
 import { createTheme, ThemeProvider,  useTheme  } from '@mui/material/styles';
 
 
@@ -57,7 +58,8 @@ function App() {
             <Route path='/add' element={<Add/>}/> 
             <Route path='/update/:id' element={<UpdateProduct/>}/>
             <Route path='/smallCart' element={<SmallCart/>}/>
-            <Route path='/order' element={<Order/>}/>               
+            <Route path='/order' element={<Order/>}/>
+            <Route path='logout' element={<Logout/>}/>               
                 
         </Routes>
       </ThemeProvider>

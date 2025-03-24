@@ -45,9 +45,9 @@ const Cart = () => {
                         <img src={item.image} alt="img item" className="img-cart"/>
                         <div className="div-in-cart">
                         <p>{item.productName} </p>
-                        <p>מחיר: {item.price}</p>
+                        <p>מחיר: {item.price} ₪</p>
                         <p> כמות: {item.qty}</p>
-                        <p>סה"כ מחיר: {item.price*item.qty}</p>
+                        <p>סה"כ מחיר: {item.price*item.qty} ₪</p>
                         <input 
                             className="cnt-products"
                             type="number" 
@@ -62,7 +62,7 @@ const Cart = () => {
             </ul>
             <div className="cart-summary">
                 <p>סה"כ מוצרים: {cnt}</p>
-                <p>סה"כ לתשלום: {sum}</p>
+                <p>סה"כ לתשלום: {sum} ₪</p>
                 <button onClick={goToOrderPage}>הזמנה</button>
             </div>
         </div>

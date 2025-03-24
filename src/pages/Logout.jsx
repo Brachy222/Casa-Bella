@@ -1,18 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { userOut } from "../features/userSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom"
-
+import { clearCart } from "../features/cartSlice"; 
+import { useNavigate } from "react-router-dom";
 
 const Logout = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    dispatch(userOut);
+    useEffect(() => {
+        dispatch(userOut());
+        dispatch(clearCart());
+        navigate("/Products");
+    }, [dispatch, navigate]);
 
-    navigate("/Products")
+    return null;
+};
 
-
-    return ( <></> );
-}
- 
 export default Logout;

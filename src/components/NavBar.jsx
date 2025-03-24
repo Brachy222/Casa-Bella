@@ -24,7 +24,7 @@ const NavBar = (props) => {
     const user = useSelector((state) => state.user.currentUser);
     console.log("משתמש נוכחי", user);
     const countCart = useSelector((state) => state.cart.count);
-
+    console.log("count product in cart: ",countCart);
     return (
         <>
             <nav className="nav-bar">

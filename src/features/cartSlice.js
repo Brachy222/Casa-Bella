@@ -1,12 +1,16 @@
 
 import { createSlice } from "@reduxjs/toolkit"
 
+const savedCart = localStorage.getItem("cart");
+const parsedCart = savedCart ? JSON.parse(savedCart) : [];  // אם יש ערך -> מפרש, אם לא -> מחזיר []
+
 const initialState = {
-    arr: [],
-    sum: 0,
-    count: 0,
+    arr: Array.isArray(parsedCart) ? parsedCart : [], // לוודא שהערך הוא מערך
+    sum: parsedCart.reduce((acc, item) => acc + (item.qty * item.price), 0),
+    count: parsedCart.reduce((acc, item) => acc + item.qty, 0),
     isOpen: false,
-}
+};
+
 const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -24,7 +28,7 @@ const cartSlice = createSlice({
             state.count += qty;
             state.sum += productCost;
             state.isOpen = true;
-            // localStorage.setItem("cart",JSON.stringify(arr))
+            localStorage.setItem("cart", JSON.stringify(state.arr));
         },
         updateQuantity: (state, action) => {
             let { _id, qty } = action.payload; 
@@ -32,7 +36,7 @@ const cartSlice = createSlice({
             if (index > -1) {
             state.arr[index].qty = qty;
             } 
-            // localStorage.setItem("cart",JSON.stringify(arr))
+            localStorage.setItem("cart", JSON.stringify(state.arr));
 
         },
         deleteFromCart: (state, action) => {
@@ -44,14 +48,21 @@ const cartSlice = createSlice({
             state.count -= itemToRemove.qty;
             state.sum -= itemToRemove.qty * itemToRemove.price;
         }
-        // localStorage.setItem("cart",JSON.stringify(arr))
+        localStorage.setItem("cart", JSON.stringify(state.arr));
 
       },
       closeCartDialog: (state) => {
         state.isOpen = false;
       },
+      clearCart: (state) => { // אקשן חדש לאיפוס העגלה
+        state.arr = [];
+        state.count = 0;
+        state.sum = 0;
+        state.isOpen = false;
+        localStorage.removeItem("cart");
+    }
     }
 });
 
-export const  {addToCart,updateQuantity,deleteFromCart,closeCartDialog,openCartDialog} = cartSlice.actions;
+export const  {addToCart,updateQuantity,deleteFromCart,closeCartDialog,openCartDialog,clearCart} = cartSlice.actions;
 export default cartSlice.reducer;

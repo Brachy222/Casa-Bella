@@ -8,8 +8,7 @@ import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { useTheme } from '@mui/material/styles';
 import DeleteIcon from '@mui/icons-material/Delete';
-
-
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const Product = ({ product }) => {
@@ -61,7 +60,10 @@ const Product = ({ product }) => {
                 <IconButton aria-label="delete">
                     <DeleteIcon onClick={() => deleteProduct(product._id)}/>
                 </IconButton>
-                    <button onClick={() => updateProduct(product._id)}>עדכן</button>
+                <IconButton aria-label="edit" onClick={() => updateProduct(product._id)}>
+                        <EditIcon />
+                    </IconButton>
+                    {/* <button onClick={() => updateProduct(product._id)}>עדכן</button> */}
             </>
         )}      
         </div>
