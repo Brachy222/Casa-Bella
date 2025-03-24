@@ -36,7 +36,7 @@ function App() {
   return (
     <> 
     <ThemeProvider theme={theme}>
-        <NavBar categoties={listCategoties}/>
+        <NavBar categoties={listCategoties} theme = {theme}/>
         <Routes>
             <Route path="/" element={<HomePage/>}/>
             <Route path="/products" element={<ProductList/>}/>
