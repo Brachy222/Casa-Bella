@@ -12,6 +12,21 @@ import Add from './pages/Add';
 import UpdateProduct from './pages/Update';
 import SmallCart from './pages/SmallCart';
 import Order from './pages/Order';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: '#1976d2', // צבע ראשי
+      },
+      secondary: {
+          main: '#dc004e', // צבע משני
+      },
+      brown: {
+          main: '#8B4513', // צבע חום
+      },
+  },
+});
 
 function App() {
   

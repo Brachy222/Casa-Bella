@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux';
 import {httpDeleteProduct,httpUpdateProduct} from "../api/productService"
 import IconButton from '@mui/material/IconButton';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import { useTheme } from '@mui/material/styles';
+
 
 
 
@@ -14,6 +16,8 @@ const Product = ({ product }) => {
     const [count, setCount] = useState(1);
     const user = useSelector(state => state.user.currentUser);
     const navigate = useNavigate();
+    const theme = useTheme();
+
 
     const handleAddToCart = () => {
         dispatch(addToCart({ ...product, qty: Number(count) })) 
@@ -47,7 +51,7 @@ const Product = ({ product }) => {
                 min="1"
                 onChange={(e) => setCount(e.target.value)} 
             />
-            <IconButton color="primary" aria-label="add to shopping cart">
+            <IconButton color="theme.palette.brown.main" aria-label="add to shopping cart">
                 <AddShoppingCartIcon onClick={handleAddToCart} />
             </IconButton>
             {/* <button onClick={handleAddToCart}>הוסף לסל</button> */}
