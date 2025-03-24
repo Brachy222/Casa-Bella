@@ -13,6 +13,7 @@ import UpdateProduct from './pages/Update';
 import SmallCart from './pages/SmallCart';
 import Order from './pages/Order';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Logout from "./pages/Logout"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -29,6 +30,9 @@ const theme = createTheme({
       },
   },
 });
+=======
+import Logout from './pages/Logout';
+>>>>>>> Stashed changes
 =======
 import Logout from './pages/Logout';
 >>>>>>> Stashed changes
