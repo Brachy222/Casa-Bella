@@ -1,8 +1,19 @@
+import * as React from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Product from "../components/Product";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+
+const CircularIndeterminate = () => {
+  return (
+    <Box sx={{ display: 'flex' }}>
+      <CircularProgress className='CircularProgress-div' sx={{ color: '#8B4513' }}/>
+    </Box>
+  );
+};
 
 const ProductList = (props) => {
     const [products, setProducts] = useState([]);
@@ -46,7 +57,7 @@ const ProductList = (props) => {
                     ))}
                 </ul>
             ) : (
-                <p>loading...</p>
+                <CircularIndeterminate />
             )}
 
             <div className='paging'>

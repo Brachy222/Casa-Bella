@@ -17,6 +17,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     maxHeight: '400px',
     overflowY: 'auto',
   },
+  minWidth: '25vw', // הוספת מינימום רוחב של 25vw
 }));
 
 const SmallCart = () => {
@@ -68,7 +69,7 @@ const SmallCart = () => {
               <img src={item.image} alt="img item" className="img-cart-small" />
               <div className="div-in-cart-small">
                 <p>{item.productName}</p>
-                <p>מחיר: {item.price}</p>
+                <p>מחיר: {item.price} ₪</p>
                 <p>כמות: {item.qty}</p>
               </div>
               <hr />
@@ -79,7 +80,7 @@ const SmallCart = () => {
           סה"כ מוצרים: {cnt}
         </Typography>
         <Typography variant="h6" align="right">
-          סה"כ לתשלום: {sum}
+          סה"כ לתשלום: {sum} ₪
         </Typography>
         {/* <Button variant="outlined" onClick={""}>
         להזמנה

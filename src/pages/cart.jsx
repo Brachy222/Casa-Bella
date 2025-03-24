@@ -31,7 +31,7 @@ const Cart = () => {
 
     return (
         <div className="cart-div">
-            <h3>עגלת קניות</h3>
+            <h2 id="h2-div">עגלת קניות</h2>
             <ul>
                 {cart.map(item => (
                     <li key={item._id} className="li-cart">
