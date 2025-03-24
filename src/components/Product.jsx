@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addToCart } from "../features/cartSlice";
+import { addToCart ,openCartDialog } from "../features/cartSlice";
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
@@ -21,10 +21,9 @@ const Product = ({ product }) => {
 
     const handleAddToCart = () => {
         dispatch(addToCart({ ...product, qty: Number(count) })) 
-        // dispatch(addToCart({ _id: product._id, qty: Number(count) ,productName:product.productName,image:product.image,price:product.price})); 
         console.log("נוסף לסל:", { _id: product._id, qty: Number(count) });
-        navigate("/smallCart") 
-    };
+        dispatch(openCartDialog());
+        };
 
     const deleteProduct = (id) => {
         httpDeleteProduct(id).then(res =>{

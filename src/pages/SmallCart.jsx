@@ -22,6 +22,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const SmallCart = () => {
   const dispatch = useDispatch();
   const open = useSelector((state) => state.cart.isOpen); // האם הדיאלוג פתוח
+  console.log("is open dialog: ",open);
   const cartItems = useSelector((state) => state.cart.arr); // מוצרים בעגלה
   const [sum, setSum] = React.useState(0);
   const [cnt, setCnt] = React.useState(0);
@@ -39,7 +40,6 @@ const SmallCart = () => {
 
   const handleClose = () => {
     dispatch(closeCartDialog()); 
-    window.history.back();
   };
 
   return (

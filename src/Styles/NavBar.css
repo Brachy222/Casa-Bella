@@ -6,15 +6,16 @@
     top: 0;
     left: 0;
     width: 95%;
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     padding-left: 20px;
     padding-right: 20px;
     width: 100%;
+    background-color: rgb(237, 230, 219);
 }
 nav a{
     text-decoration: none;
-    color: black;
-    padding: 8px;
+    color: rgb(57, 57, 57);
+    /* padding: 8px; */
     margin: 5px;
     font-weight: bold;
     padding-right: 20px;
@@ -23,6 +24,6 @@ nav ul li{
     padding-bottom: 0;
 }
 nav a:hover{
-    background-color: white;
+    /* background-color: white; */
     color: rgb(74, 72, 72);
 }

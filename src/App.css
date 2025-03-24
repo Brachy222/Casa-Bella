@@ -38,7 +38,7 @@ img{
   margin-left: 10px;
 }
 .navDiv{
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
 }
 .img-desktop{
   width: 100vw;
