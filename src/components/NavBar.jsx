@@ -1,12 +1,20 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import { ShoppingCart } from "@mui/icons-material";
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Badge, useTheme, ThemeProvider } from '@mui/material';
+
 import "../styles/NavBar.css";
 
 const NavBar = (props) => {
+
     const { categoties } = props;
     const user = useSelector((state) => state.user.currentUser);
     console.log("משתמש נוכחי", user);
+    const countCart = useSelector((state) => state.cart.count);
+    const theme = useTheme();
 
     return (
         <>
@@ -49,8 +57,19 @@ const NavBar = (props) => {
                         </>
                     )}
                     {/* {user && <Link to="/order">  סיום הזמנה </Link>} */}
-                    <Link to="/cart">
+                    {/* <Link to="/cart">
                         <ShoppingCart style={{ color: "black" }} />
+                    </Link> */}
+                    <Link to="/cart" style={{ textDecoration: 'none' }}>
+                        {/* <IconButton>
+                            <Badge badgeContent={countCart} sx={{ bgcolor: theme.palette.brown.main }} overlap="circular">
+                                <ShoppingCartIcon />
+                            </Badge>
+                        </IconButton> */}
+                        <IconButton>
+                            <ShoppingCartIcon fontSize="small" />
+                            <Badge badgeContent={countCart} sx={{ bgcolor: theme.palette.brown }} overlap="circular" />
+                        </IconButton>
                     </Link>
                 </div>
             </nav>
