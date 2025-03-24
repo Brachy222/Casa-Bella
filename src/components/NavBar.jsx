@@ -20,7 +20,8 @@ const CartBadge = styled(Badge)`
 const NavBar = (props) => {
 
     const { categoties, theme } = props;
-    const user = JSON.parse(localStorage.getItem("user"));
+    // const user = JSON.parse(localStorage.getItem("user"));
+    const user = useSelector((state) => state.user.currentUser);
     console.log("משתמש נוכחי", user);
     const countCart = useSelector((state) => state.cart.count);
 

@@ -8,5 +8,6 @@ export const httpAddCustomer = (customer) => {
 }
 // פונקציה לביצוע לוגין למשתמש קיים
 export const httpLoginCustomer = (customer) =>{
+    console.log("in httpLoginCustomer",customer);
     return axios.post(baseUrl+"/login",customer);
 }
