@@ -20,7 +20,7 @@ const CartBadge = styled(Badge)`
 const NavBar = (props) => {
 
     const { categoties, theme } = props;
-    const user = useSelector((state) => state.user.currentUser);
+    const user = JSON.parse(localStorage.getItem("user"));
     console.log("משתמש נוכחי", user);
     const countCart = useSelector((state) => state.cart.count);
 
@@ -55,7 +55,7 @@ const NavBar = (props) => {
                     {user ? (
                         <>
                             <span>שלום, {user?.userName || "אורח"}</span>
-                            <Link to="/login">יציאה</Link>
+                            <Link to="/logout">יציאה</Link>
                         </>
                     ) : (
                         <>
