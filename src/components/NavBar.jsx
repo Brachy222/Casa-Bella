@@ -5,16 +5,24 @@ import { ShoppingCart } from "@mui/icons-material";
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Badge, useTheme, ThemeProvider } from '@mui/material';
+import { styled } from '@mui/material/styles';
+import { badgeClasses } from '@mui/material/Badge';
 
 import "../styles/NavBar.css";
 
+const CartBadge = styled(Badge)`
+  & .${badgeClasses.badge} {
+    top: -12px;
+    right: -20px;
+  }
+`;
+
 const NavBar = (props) => {
 
-    const { categoties } = props;
+    const { categoties, theme } = props;
     const user = JSON.parse(localStorage.getItem("user"));
     console.log("משתמש נוכחי", user);
     const countCart = useSelector((state) => state.cart.count);
-    const theme = useTheme();
 
     return (
         <>
@@ -61,15 +69,14 @@ const NavBar = (props) => {
                         <ShoppingCart style={{ color: "black" }} />
                     </Link> */}
                     <Link to="/cart" style={{ textDecoration: 'none' }}>
+                    <IconButton>
+                        <ShoppingCartIcon fontSize="small" />
+                        <CartBadge badgeContent={countCart} color="warning" overlap="circular" />
+                    </IconButton>
                         {/* <IconButton>
-                            <Badge badgeContent={countCart} sx={{ bgcolor: theme.palette.brown.main }} overlap="circular">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </IconButton> */}
-                        <IconButton>
                             <ShoppingCartIcon fontSize="small" />
                             <Badge badgeContent={countCart} sx={{ bgcolor: theme.palette.brown }} overlap="circular" />
-                        </IconButton>
+                        </IconButton> */}
                     </Link>
                 </div>
             </nav>
