@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import { ShoppingCart } from "@mui/icons-material";
 import "../styles/NavBar.css";
 
 const NavBar = (props) => {
     const { categoties } = props;
-    const user = useSelector((state) => state.user.currentUser);
+    const user = JSON.parse(localStorage.getItem("user"));
     console.log("משתמש נוכחי", user);
 
     return (
@@ -39,7 +39,7 @@ const NavBar = (props) => {
                     {user ? (
                         <>
                             <span>שלום, {user?.userName || "אורח"}</span>
-                            <Link to="/login">יציאה</Link>
+                            <Link to="/logout">יציאה</Link>
                         </>
                     ) : (
                         <>
