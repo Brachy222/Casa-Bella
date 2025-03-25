@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { httpAddProduct } from "../api/productService";
 import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
+import Swal from "sweetalert2";
 import "../Styles/Signup.css";
 
 const AddProduct = () => {
@@ -33,11 +34,18 @@ const AddProduct = () => {
         console.log("נשלח לשרת:", data);
         let token  = localStorage.getItem("token")
         httpAddProduct(data,token).then(() => {
-            alert("מוצר נוסף בהצלחה");
+            Swal.fire({
+                title: "מוצר נוסף בהצלחה",
+                icon: "success"
+            })
             reset();
         }).catch(err => {
             console.error("שגיאת שרת:", err);
-            alert(`שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+            Swal.fire({
+                title: `שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`,
+                icon: "error"
+            })
+            // alert(`שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
         });
     };
 
