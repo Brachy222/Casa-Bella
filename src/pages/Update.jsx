@@ -60,7 +60,6 @@ const UpdateProduct = () => {
             })
             .catch(err => {
                 console.error("שגיאת שרת:", err);
-                alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
                 Swal.fire({
                     title: "שגיאה בעדכון",
                     text:` ${err.response?.data?.message || "שגיאה לא ידועה"}`,
