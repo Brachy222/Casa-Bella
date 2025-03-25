@@ -1,6 +1,9 @@
 import { useSelector, useDispatch } from "react-redux";
 import { updateQuantity, deleteFromCart } from "../features/cartSlice";
 import { useNavigate } from "react-router-dom";
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import "../Styles/cart.css";
 
 const Cart = () => {
@@ -48,7 +51,9 @@ const Cart = () => {
                                 min="1"
                                 onChange={(e) => changeQty(item._id, e.target.value)}
                             />
-                            <button onClick={() => delItem(item._id)}>🗑️</button>
+                            <IconButton aria-label="delete">
+                                <DeleteIcon onClick={() => delItem(item._id)}/>
+                            </IconButton >
                         </div>
                     </li>
                 ))}
