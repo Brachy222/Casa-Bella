@@ -6,6 +6,24 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import "../Styles/cart.css";
 
+import React, { useState } from 'react';
+import { Button, Box, Typography } from '@mui/material';
+
+const CounterButton = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+
+  return (
+    <Box display="flex" alignItems="center">
+      <Button onClick={decrement} variant="contained" color="primary" >-</Button>
+      <Typography variant="h6" sx={{ mx: 2 }}>{count}</Typography>
+      <Button onClick={increment} variant="contained" color="primary">+</Button>
+    </Box>
+  );
+}
+
 const Cart = () => {
     const cart = useSelector(state => state.cart.arr);
     const user = JSON.parse(localStorage.getItem("user"))
@@ -44,13 +62,14 @@ const Cart = () => {
                             <p>מחיר: {item.price} </p>
                             <p> כמות: {item.qty}</p>
                             <p>סה"כ מחיר: {item.price * item.qty} ₪</p>
-                            <input 
+                            {/* <input 
                                 className="cnt-products"
                                 type="number" 
                                 value={item.qty} 
                                 min="1"
                                 onChange={(e) => changeQty(item._id, e.target.value)}
-                            />
+                            /> */}
+                            <CounterButton />
                             <IconButton aria-label="delete">
                                 <DeleteIcon onClick={() => delItem(item._id)}/>
                             </IconButton >
