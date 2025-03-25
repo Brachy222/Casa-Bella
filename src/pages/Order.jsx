@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { httpAddOrder } from "../api/orderService";
-import { useNavigate } from "react-router-dom";
-
-import '../Styles/Order.css';
+import { useNavigate } from 'react-router-dom';
+import { httpAddOrder } from '../api/orderService';
+import Swal from 'sweetalert2';
+import '../Styles/Signup.css'; 
+// import '../Styles/Order.css'; 
 
 const Order = () => {
     const { register, handleSubmit, reset } = useForm();
     const cartItems = useSelector(state => state.cart.arr);
-    const productsYouBuy = useSelector(state => state.cart.arr);
     const moneyToPay = useSelector(state => state.cart.sum);
     const navigate = useNavigate();
 
-    console.log('Cart items:', cartItems);  
-
     useEffect(() => {
         reset({
-            fullName: JSON.parse(localStorage.getItem('user')).userName,
+            fullName: JSON.parse(localStorage.getItem('user'))?.userName || '',
             shippingStreet: '',
             shippingHouse: '',
             shippingCity: ''
@@ -28,44 +25,46 @@ const Order = () => {
     const onSubmit = async (data) => {
         console.log("נשלח לשרת:", data);
         let token  = localStorage.getItem("token");
-        data = {...data, products: productsYouBuy, finallyPrice: moneyToPay};
+        data = { ...data, products: cartItems, finallyPrice: moneyToPay };
+        
         httpAddOrder(data, token)
             .then(() => {
-                alert("הזמנה בוצעה בהצלחה");
+                // alert("הזמנה בוצעה בהצלחה");
+                Swal.fire({
+                    title: "ההזמנה נקלטה בהצלחה",
+                    icon: "success"
+                })
                 navigate("/Products");
             })
             .catch(err => {
                 console.error("שגיאת שרת:", err);
+                Swal.fire({
+                    title: "שגיאה- הזמנה לא נקלטה ",
+                    icon: "error"
+                })
+                
                 alert(`שגיאה בהזמנה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
             });
     };
 
     return (
-        <div>
-            <h1>סיום הזמנה</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <div id="end-personal-details">
-                    <label>שם מלא:</label>
-                    <input {...register('fullName', { required: true })} />
-                    <label>כתובת למשלוח:</label>
-                    <input type='text' {...register('shippingStreet', { required: true })} placeholder='רחוב'/>
-                    <input type='number' {...register('shippingHouse', { required: true })} placeholder='מספר בית'/>
-                    <input type='text' {...register('shippingCity', { required: true })} placeholder='עיר'/>
-
+        <div className="register-container">
+            <h2>סיום הזמנה</h2>
+            <form noValidate onSubmit={handleSubmit(onSubmit)} className="register-form">
+                <div className="input-group">
+                    <label className='labal-css'>שם מלא</label>
+                    <input type="text" {...register('fullName', { required: "שדה חובה" })} />
                 </div>
-                {/* <h2>רשימת מוצרים:</h2>
-                <ul>
-                    {cartItems.map(item => (
-                        <li key={item.id}>
-                            <img src={item.image} alt="img item" className="img-cart"/>
-                            <h3>{item.productName}</h3>
-                            <p>מחיר: {item.price} ₪</p>
-                            <p>כמות: {item.qty}</p>
-                        </li>
-                    ))}
-                </ul> */}
+
+                <div className="input-group">
+                    <label className='labal-css'>כתובת למשלוח</label>
+                    <input type="text" {...register('shippingStreet', { required: "שדה חובה" })} placeholder="רחוב" />
+                    <input type="number" {...register('shippingHouse', { required: "שדה חובה" })} placeholder="מספר בית" />
+                    <input type="text" {...register('shippingCity', { required: "שדה חובה" })} placeholder="עיר" />
+                </div>
+                
                 <h3>סכום לתשלום: {moneyToPay} ₪</h3>
-                <button type="submit">אישור הזמנה</button>
+                <button type="submit" className="register-button">אישור הזמנה</button>
             </form>
         </div>
     );
