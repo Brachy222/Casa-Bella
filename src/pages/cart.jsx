@@ -17,12 +17,70 @@ const CounterButton = () => {
 
   return (
     <Box display="flex" alignItems="center">
-      <Button onClick={decrement} variant="contained" color="primary" >-</Button>
+      <Button
+        onClick={decrement}
+        variant="contained"
+        sx={{
+          backgroundColor: 'brown',  // צבע הרקע חום
+          }}
+      >
+        -
+      </Button>
       <Typography variant="h6" sx={{ mx: 2 }}>{count}</Typography>
-      <Button onClick={increment} variant="contained" color="primary">+</Button>
+      <Button
+        onClick={increment}
+        variant="contained"
+        sx={{
+          backgroundColor: 'brown',  // צבע הרקע חום
+                          // ביטול הריפוד המיותר
+        }}
+      >
+        +
+      </Button>
     </Box>
   );
 }
+
+const Counter = () => {
+    const [count, setCount] = useState(0);
+  
+    const increment = () => setCount(count + 1);
+    const decrement = () => {
+      if (count > 0) setCount(count - 1);  // מוודא שהמספר לא ירד מתחת ל-0
+    };
+  
+    return (
+      <div style={styles.container}>
+        <input type="button" style={styles.button} onClick={decrement} value={"-"} />
+        <div style={styles.number}>{count}</div>
+        <input type="button" style={styles.button} onClick={increment} value={"+"} />
+      </div>
+    );
+  };
+  
+  const styles = {
+    container: {
+      display: 'flex',
+      alignItems: 'center',
+      border: '1px solid black',  // מסגרת סביב המלבן
+      padding: '5px 10px',        // ריפוד כדי שהמספר לא יגע בקצוות
+    }, 
+    button: {
+      width: '20px',
+      height: '20px',
+      fontSize: '15px',
+      cursor: 'pointer',
+      backgroundColor: 'transparent',
+      display: 'flex',
+      border: 'none',
+      justifyContent: 'center',
+      alignItems: 'center',
+      margin: '5px',
+    },
+    number: {
+      fontSize: '15px',
+    }
+  };
 
 const Cart = () => {
     const cart = useSelector(state => state.cart.arr);
@@ -69,7 +127,7 @@ const Cart = () => {
                                 min="1"
                                 onChange={(e) => changeQty(item._id, e.target.value)}
                             /> */}
-                            <CounterButton />
+                            <Counter />
                             <IconButton aria-label="delete">
                                 <DeleteIcon onClick={() => delItem(item._id)}/>
                             </IconButton >
