@@ -17,6 +17,7 @@ const Product = ({ product }) => {
     const user = useSelector(state => state.user.currentUser);
     const navigate = useNavigate();
     const theme = useTheme();
+    let token = JSON.parse(localStorage.getItem("token"));
 
 
     const handleAddToCart = () => {
@@ -25,8 +26,8 @@ const Product = ({ product }) => {
         dispatch(openCartDialog());
         };
 
-    const deleteProduct = (id) => {
-        httpDeleteProduct(id).then(res =>{
+    const deleteProduct = (id, token) => {
+        httpDeleteProduct(id, token).then(res =>{
         alert("מוצר נמחק בהצלחה")
         } ).catch(err => {
             console.log(err);
@@ -57,7 +58,7 @@ const Product = ({ product }) => {
             {user&&user?.role === "admin" && (
             <>
                 <IconButton aria-label="delete">
-                    <DeleteIcon onClick={() => deleteProduct(product._id)}/>
+                    <DeleteIcon onClick={() => deleteProduct(product._id, token)}/>
                 </IconButton>
                 <IconButton aria-label="edit" onClick={() => updateProduct(product._id)}>
                         <EditIcon />
