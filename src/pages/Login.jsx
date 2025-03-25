@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { httpLoginCustomer } from "../api/customerService";
 import { useNavigate } from "react-router-dom";
 import { userIn } from "../features/userSlice";
+import Swal from "sweetalert2";
 import "../Styles/Signup.css"; 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({
@@ -16,18 +17,34 @@ const Login = () => {
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        httpLoginCustomer(data).then(res => {
-            const user = res.data;
-            console.log("המשתמש המחובר כעת",user);
-            //עדכון currentUser
-            //  שבסטייט להיות המשתמש שנכנס
-            dispatch(userIn(user));
-            navigate("/Products")
-        }).catch(err => {
-            console.log(err);
-            alert("משתמש לא רשום")
-        })
-    }
+        httpLoginCustomer(data)
+            .then(res => {
+                const user = res.data;
+                console.log("המשתמש המחובר כעת", user);
+                dispatch(userIn(user));
+    
+                // הצגת Swal ורק לאחר אישורו נווט ל-Products
+                Swal.fire({
+                    title: "התחברת בהצלחה!",
+                    text: `ברוך הבא ${user.userName}`,
+                    icon: "success",
+                    confirmButtonText: "המשך"
+                }).then(() => {
+                    navigate("/Products");
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                Swal.fire({
+                    title: "משתמש לא קיים",
+                    text: "נא הרשם/י במערכת",
+                    icon: "error"
+                }).then(() => {
+                    navigate("/signup");
+                });
+            });
+    };
+    
 
     return (
         <div className="register-container">

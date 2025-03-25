@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { httpUpdateProduct, httpGetproductById } from "../api/productService";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import "../Styles/Signup.css";
 
 const UpdateProduct = () => {
@@ -35,7 +36,10 @@ const UpdateProduct = () => {
                 setLoading(false);
             }).catch(err => {
                 console.error("שגיאה בקבלת נתוני המוצר:", err);
-                alert("שגיאה בטעינת נתוני המוצר.");
+                Swal.fire({
+                    title: "שגיאה בטעינת נתוני המוצר.",
+                    icon: "error",
+                })
                 setLoading(false);
             });
         }
@@ -46,12 +50,22 @@ const UpdateProduct = () => {
         let token  = JSON.parse(localStorage.getItem("token"));
         httpUpdateProduct(data, id ,token)
             .then(() => {
-                alert("מוצר עודכן בהצלחה!");
-                navigate("/Products");
+                Swal.fire({
+                    title: "מוצר עודכן בהצלחה!",
+                    icon: "success",
+                    confirmButtonText: "סגור"
+                }).then(() => {
+                    navigate("/Products");
+                }); 
             })
             .catch(err => {
                 console.error("שגיאת שרת:", err);
                 alert(`שגיאה בעדכון: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+                Swal.fire({
+                    title: "שגיאה בעדכון",
+                    text:` ${err.response?.data?.message || "שגיאה לא ידועה"}`,
+                    icon: "error",
+                })
             });
     };
 

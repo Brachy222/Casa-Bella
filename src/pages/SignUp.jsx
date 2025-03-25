@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { httpAddCustomer } from "../api/customerService";
 import { userIn } from "../features/userSlice";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import "../Styles/Signup.css"; 
 
 const Signup = () => {
@@ -25,12 +26,22 @@ const Signup = () => {
             console.log(user);
             localStorage.setItem("user", JSON.stringify(user));
             localStorage.setItem("token",user.token)
-            alert("משתמש נרשם בהצלחה")
-            navigate("/Products")
+            Swal.fire({
+                title: "נרשמת בהצלחה בהצלחה!",
+                text: `ברוך הבא ${user.userName}`,
+                icon: "success",
+                confirmButtonText: "המשך"
+            }).then(() => {
+                navigate("/Products");
+            });
+                        // navigate("/Products")
 
         }).catch(err => {
             console.log(err);
-            alert("שגיאה בהרשמה")
+            Swal.fire({
+                title: "שגיאה בהרשמה",
+                icon: "error",
+            })
         })
     }
 
