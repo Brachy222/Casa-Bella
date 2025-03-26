@@ -13,11 +13,10 @@ export const httpAddProduct = (product,token) => {
 }
 
 export const httpUpdateProduct = (product, id, token) => {
-    console.log(id);
-    return axios.put(baseUrl+"/"+id,product,{
+    console.log("id in httpUpdateProduct: " , id);
+    return axios.put(`${baseUrl}/${id}`,product,{
         headers:{
             "Authorization" : `Bearer ${token}`,
-            "try": "hello"
         }
     });
 }
@@ -32,5 +31,6 @@ export const httpDeleteProduct = (id, token) => {
 }
 
 export const httpGetproductById = (id) => {
+    console.log("id in httpGetproductById: " , id)
     return axios.get(baseUrl+"/"+id);
 }
