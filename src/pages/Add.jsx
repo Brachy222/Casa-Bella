@@ -29,7 +29,7 @@ const AddProduct = () => {
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        let token = localStorage.getItem("token");
+        let token =JSON.parse(localStorage.getItem("token"));
         httpAddProduct(data, token).then(() => {
             Swal.fire({
                 title: "מוצר נוסף בהצלחה",
