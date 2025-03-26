@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import { httpAddProduct } from "../api/productService";
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import Swal from "sweetalert2";
 import "../Styles/Signup.css";
+import { useState } from "react";
 
 const AddProduct = () => {
-    const { register, handleSubmit, formState: { errors }, setValue,reset } = useForm({
+    const { register, handleSubmit, formState: { errors }, setValue, reset } = useForm({
         defaultValues: {
             productName: "",
             productionDate: "",
@@ -14,38 +14,34 @@ const AddProduct = () => {
             image: "",
             price: 0,
             categories: [],
+            selectedCategoryDetail: "", // הוספת שדה חדש לפרטי הקטגוריה
         }
     });
+    
+    const [selectedCategory, setSelectedCategory] = useState("");
 
     const listCategories = {
         table: "שולחן ואירוח",
         livingRoom: "סלון ואווירה",
         accessories: "אקססוריז",
         packages: "מארזים",
-        candlesticks:"פמוטות",
-        flower:"פרחים",
-        fragrance:"מפיצי ריח",
-        placement:"פלייסמט",
-        tablecloths:"מפות",
-        home: "לבית"
     };
 
     const save = (data) => {
         console.log("נשלח לשרת:", data);
-        let token  = localStorage.getItem("token")
-        httpAddProduct(data,token).then(() => {
+        let token = localStorage.getItem("token");
+        httpAddProduct(data, token).then(() => {
             Swal.fire({
                 title: "מוצר נוסף בהצלחה",
                 icon: "success"
-            })
+            });
             reset();
         }).catch(err => {
             console.error("שגיאת שרת:", err);
             Swal.fire({
                 title: `שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`,
                 icon: "error"
-            })
-            // alert(`שגיאה בהוספה: ${err.response?.data?.message || "שגיאה לא ידועה"}`);
+            });
         });
     };
 
@@ -97,13 +93,18 @@ const AddProduct = () => {
                     })} />
                     {errors.price && <p className="error">{errors.price.message}</p>}
                 </div>
-
+                <div className="input-group">
+                    <label> קטגורית מוצר:</label>
+                    <input type="text" {...register("selectedCategoryDetail")} value={listCategories[selectedCategory] || ""} readOnly />
+                </div>
                 <div className="input-group">
                     <label>קטגוריות:</label>
                     <select multiple {...register("categories", { required: "יש לבחור לפחות קטגוריה אחת" })} 
                         onChange={(e) => {
                             const selectedOptions = [...e.target.selectedOptions].map(option => option.value);
                             setValue("categories", selectedOptions);
+                            setSelectedCategory(selectedOptions[0]); // עדכון הקטגוריה הנבחרת
+                            setValue("selectedCategoryDetail", listCategories[selectedOptions[0]]); // עדכון פרטי הקטגוריה
                         }}>
                         {Object.entries(listCategories).map(([key, value]) => (
                             <option key={key} value={key}>{value}</option>
@@ -111,6 +112,9 @@ const AddProduct = () => {
                     </select>
                     {errors.categories && <p className="error">{errors.categories.message}</p>}
                 </div>
+
+                {/* אינפוט קיים מראש שיתעדכן לפי הקטגוריה הנבחרת */}
+                
 
                 <button type="submit" className="register-button">הוסף מוצר</button>
             </form>
